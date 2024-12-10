@@ -8,11 +8,11 @@
           crossorigin="anonymous">
 </head>
 <body>
-{% if error %}
-    <h1 style="color:red">{{ error }}</h1>
-{% elif succes %}
-    <h1 style="color:green">{{ succes }}</h1>
-{% endif %}
+{% with message = get_flashed_messages(with_categories=true) %}
+    {% if error %}
+        <h1 style="color:red">{{ error }}</h1>
+    {% endif %}
+{% endwith %}
     <form action="/register" method="POST">
           <div class="mb-3">
             <label for="email" class="form-label">Email address</label>

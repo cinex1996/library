@@ -45,10 +45,12 @@ def register_user():
         answer = request.form.get("answer")
 
         if not email or not password or not repeat_password or not answer:
-            return render_template("register.html", error="Masz gdzieś puste pola")
+            flash("Wszystkie pola muszą być uzupełnione","error")
+            return render_template("register.html")
 
         if password != repeat_password:
-            return render_template("register.html", error="Hasła muszą być takie same")
+            flash("Hasła muszą się zgadzać","error")
+            return render_template("register.html")
         hash_answer = generate_password_hash(answer)
         hashed_password = generate_password_hash(password)
         with db.session.begin():# Securely hash the password
