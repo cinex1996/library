@@ -25,14 +25,18 @@ def login_users():
         password = request.form.get("password")
         found_user = Users.query.filter_by(email=email).first()
         if not email or not password:
-            return render_template("login.html", error="Pola nie mogą być puste")
+            flash("Pola są puste","error")
+            return render_template("login.html")
         # Add login logic here, e.g., verify user credentials
         if not found_user:
-            return render_template("login.html", error="Przykro mi taki użytkownik nie istnieje")
+            flash("Taki użytkownik nie istnieje w serwisie","error")
+            return render_template("login.html")
         if not check_password_hash(found_user.password,password):
-            return render_template("login.html", error="Podałeś nieprawidłowe hasło")
+            flash("Podałeś złe hasło do swojego konta","error")
+            return render_template("login.html")
         session['email'] = found_user.email
-        return render_template("homepage.html",succes = "Zalogowano pomyślnie")
+        flash("Udało ci się zalogować do swojego konta","succes")
+        return render_template("homepage.html")
     return render_template("login.html")
 
 
