@@ -5,6 +5,9 @@
     <title>Title</title>
 </head>
 <body>
+{% if succes %}
+<p style="color:green">Udało ci się dodać użytkownika</p>
+{% endif %}
  <h1>Witamy na naszej stronie internetowej</h1>
 <a href="{{url_for('login.login_users')}}">Zaloguj się </a>
 <a href="{{url_for('register.register_user')}}">Zarejestruj się</a>
