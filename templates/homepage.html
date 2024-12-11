@@ -3,11 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Bree+Serif);
+
+body {
+  background: #212121;
+  font-size: 22px;
+  line-height: 32px;
+  color: #ffffff;
+  word-wrap: break-word !important;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  font-size: 60px;
+  text-align: center;
+  color: #FFF;
+  margin-top: 100px;
+  font-family: 'Bree Serif', 'serif';
+}
+
+h3 {
+  font-size: 30px;
+  text-align: center;
+  color: #FFF;
+}
+
+h3 a {
+  color: #FFF;
+}
+
+a {
+  color: #FFF;
+}
+
+#container {
+  margin: 0 auto;
+}
+
+p {
+  text-align: center;
+}
+
+nav {
+  margin: 50px 0;
+  background-color: #E64A19;
+}
+
+nav ul {
+  display: flex; /* Flexbox dla poziomego układu */
+  justify-content: space-around; /* Wyrównanie dookoła */
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav a {
+  display: block;
+  padding: 0 10px;
+  color: #FFF;
+  font-size: 20px;
+  line-height: 60px;
+  text-decoration: none;
+  text-align: center;
+}
+
+nav a:hover {
+  background-color: #000000;
+}
+
+/* Hide Dropdowns by Default */
+nav ul ul {
+  display: none;
+  position: absolute;
+  top: 60px; /* the height of the main nav */
+}
+
+/* Display Dropdowns on Hover */
+nav ul li:hover > ul {
+  display: inherit;
+}
+
+/* Fisrt Tier Dropdown */
+nav ul ul li {
+  width: 170px;
+  float: none;
+  display: list-item;
+  position: relative;
+}
+
+/* Second, Third and more Tiers */
+nav ul ul ul li {
+  top: -60px;
+  left: 170px;
+}
+
+@media (max-width: 768px) {
+  /* Na ekranach poniżej 768px, zmieniamy układ na pionowy */
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav a {
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  nav ul ul {
+    position: relative;
+    top: 0;
+  }
+
+  /* Ukrywamy sub-menu na małych ekranach */
+  nav ul ul {
+    display: none;
+  }
+
+  nav ul li:hover > ul {
+    display: block; /* Pokaż sub-menu na hover */
+  }
+}
+
+@media (max-width: 600px) {
+  /* Dostosowanie dla jeszcze mniejszych ekranów */
+  body {
+    font-size: 18px;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  .item {
+    width: 100%;
+  }
+
+  nav ul li {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (min-width: 601px) {
+  .container {
+    padding: 40px;
+  }
+
+  .item {
+    width: 48%;
+  }
+}
+
+/* Zmiana symbolu w menu rozwijanym */
+li > a:after {
+  content: ' +';
+}
+
+li > a:only-child:after {
+  content: '';
+}
+    </style>
 </head>
 <body>
 {% if succes %}
 <p style="color:green">Zalogowano się pomyślnie</p>
 {% endif %}
+
   <p>{{ session['email'] }}</p>
+<div id="container">
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">WordPress</a>
+            <!-- First Tier Drop Down -->
+
+            </li>
+            <li><a href="#">Web Design</a>
+            <!-- First Tier Drop Down -->
+
+            </li>
+            <li><a href="#">Graphic Design</a></li>
+            <li><a href="#">Inspiration</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="/logout">wyloguj się</a></li>
+        </ul>
+    </nav>
+
+</div>
 </body>
 </html>
