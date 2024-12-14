@@ -185,21 +185,38 @@ li > a:only-child:after {
     <nav>
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">WordPress</a>
+            <li><a href="/add_books">Dodaj książkę</a>
             <!-- First Tier Drop Down -->
 
             </li>
-            <li><a href="#">Web Design</a>
-            <!-- First Tier Drop Down -->
-
-            </li>
-            <li><a href="#">Graphic Design</a></li>
-            <li><a href="#">Inspiration</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="/view">Wyświetl moje książki</a></li>
             <li><a href="/logout">wyloguj się</a></li>
         </ul>
     </nav>
 
 </div>
+ <h1>List of Books</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user._id }}</td>
+                <td>{{ user.name_book }}</td>
+                <td>{{ user.gerne }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">No books available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

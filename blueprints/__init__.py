@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 def create_blueprints():
-    from blueprints.welcome import login, register, log_out
+    from blueprints.welcome import login, register, log_out, books
     app = Flask(__name__, template_folder="/home/mskar/PycharmProjects/library/templates")
     app.secret_key = "superkey"
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/mskar/PycharmProjects/library/books.sqlite'
@@ -11,4 +11,5 @@ def create_blueprints():
     app.register_blueprint(login)  # Registers the login blueprint
     app.register_blueprint(register)
     app.register_blueprint(log_out)
+    app.register_blueprint(books)
     return app
