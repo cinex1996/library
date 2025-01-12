@@ -1,24 +1,20 @@
-from crypt import methods
-from functools import wraps
-from logging import error
-
-from flask import Blueprint, render_template, request, session, url_for, flash, make_response
-from flask_sqlalchemy.session import Session
-from sqlalchemy.testing.suite.test_reflection import users
+from flask import Blueprint, render_template, request, session, url_for, flash
+from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
 
-from .users import Users, Books
-from . import db  # Import db from the app setup
-from werkzeug.security import generate_password_hash, check_password_hash
+from app import db  # Import db from the app setup
+from app.models.users import Users, Books
 
 login = Blueprint("login", __name__, template_folder="templates")
 register = Blueprint("register", __name__, template_folder="templates")
 log_out = Blueprint("logout", __name__, template_folder="templates")
 books = Blueprint("books", __name__, template_folder="templates")
 
+
 @login.route("/")
 def index():
     return render_template("login.html")
+
 
 @login.route("/login", methods=["POST", "GET"])
 def login_users():
@@ -27,16 +23,17 @@ def login_users():
         password = request.form.get("password")
         found_user = Users.query.filter_by(email=email).first()
         if not email or not password:
-            flash("Pola są puste","error")
+            flash("Pola są puste", "error")
             return render_template("login.html")
         # Add login logic here, e.g., verify user credentials
         if not found_user:
-            flash("Taki użytkownik nie istnieje w serwisie","error")
+            flash("Taki użytkownik nie istnieje w serwisie", "error")
             return render_template("login.html")
-        if not check_password_hash(found_user.password,password):
-            flash("Podałeś złe hasło do swojego konta","error")
+        if not check_password_hash(found_user.password, password):
+            flash("Podałeś złe hasło do swojego konta", "error")
             return render_template("login.html")
-        flash("Udało ci się zalogować do swojego konta","succes")
+        session['email'] = email
+        flash("Udało ci się zalogować do swojego konta", "succes")
         users = Books.query.all()
         return render_template("homepage.html", users=users)
 
@@ -89,7 +86,6 @@ def register_user():
     return render_template("register.html")
 
 
-
 @register.route("/change_password", methods=["POST", "GET"])
 def change_password():
     # Jeśli nie, przekierowanie do logowania
@@ -136,22 +132,28 @@ def change_password():
             return render_template("change_password.html")
 
     return render_template("change_password.html")
+
+
 @log_out.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for('login.login_users'))
-@books.route("/add_books", methods=["POST","GET"])
+
+
+@books.route("/add_books", methods=["POST", "GET"])
 def add_books():
-    if request.method=="POST":
+    if request.method == "POST":
         name_books = request.form.get("name_book")
         gerne = request.form.get("gerne")
-        books = Books(name_book=name_books,gerne=gerne,id=session['id'])
+        books = Books(name_book=name_books, gerne=gerne,user=session['email'])
         db.session.add(books)
         db.session.commit()
         return render_template("addbooks.html")
 
     return render_template("addbooks.html")
-@books.route("/view_book", methods=["POST","GET"])
+
+
+@books.route("/view_book", methods=["POST", "GET"])
 def view_books():
-    users = Books.query.all()
-    return render_template("homepage.html",users=users)
+    users = Books.query.filter(Books.user==session['email']).all()
+    return render_template("homepage.html", users=users)

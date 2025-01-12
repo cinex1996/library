@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj Książkę</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='addbook.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,300" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Dodaj Książkę</h2>
+                    <form action="/add_books" method="POST">
+                        <div class="mb-3">
+                            <label for="name_book" class="form-label">Nazwa Książki</label>
+                            <input type="text" name="name_book" class="form-control" id="name_book"
+                                   placeholder="Podaj nazwę książki" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="genre" class="form-label">Gatunek Książki</label>
+                            <input type="text" name="genre" class="form-control" id="genre"
+                                   placeholder="Podaj gatunek książki" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Dodaj Książkę</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76A8fScPz5fKoDdO+/Rt2yJbME4hFjD9xjxl3Lxv5g8AJMgVRfCQciF/Q6AnV9D"
+        crossorigin="anonymous"></script>
+</body>
+</html>

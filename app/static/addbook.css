@@ -1,0 +1,78 @@
+/* Styl ogólny dla strony */
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #f8f9fa; /* Jasnoszary kolor tła */
+    margin: 0;
+    padding: 0;
+}
+
+/* Kontener formularza */
+.container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* Karta formularza */
+.card {
+    border-radius: 10px; /* Zaokrąglenie krawędzi */
+    border: none; /* Usunięcie obramowania */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtelny cień */
+    background-color: #ffffff; /* Białe tło */
+}
+
+/* Nagłówek formularza */
+.card-body h2 {
+    font-size: 24px;
+    color: #333; /* Ciemnoszary tekst */
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Etykiety */
+.form-label {
+    font-weight: bold;
+    color: #555; /* Subtelnie ciemniejszy tekst */
+}
+
+/* Pola tekstowe */
+.form-control {
+    border: 1px solid #ced4da; /* Jasnoszary obramowanie */
+    border-radius: 5px; /* Zaokrąglone krawędzie */
+    padding: 10px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #007bff; /* Kolor podświetlenia (Bootstrap primary) */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Przycisk */
+.btn-primary {
+    background-color: #007bff; /* Kolor przycisku */
+    border-color: #007bff;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Ciemniejszy kolor po najechaniu */
+    border-color: #0056b3;
+}
+
+/* Tło pomocniczego tekstu */
+.form-text {
+    font-size: 12px;
+    color: #6c757d; /* Szary tekst */
+}
+
+/* Dodatkowe stylizacje */
+.d-grid {
+    margin-top: 20px;
+}
+

@@ -189,7 +189,7 @@ li > a:only-child:after {
             <!-- First Tier Drop Down -->
 
             </li>
-            <li><a href="/view">Wyświetl moje książki</a></li>
+            <li><a href="/view_book">Wyświetl moje książki</a></li>
             <li><a href="/logout">wyloguj się</a></li>
         </ul>
     </nav>
@@ -201,7 +201,8 @@ li > a:only-child:after {
             <tr>
                 <th>ID</th>
                 <th>Title</th>
-                <th>Author</th>
+                <th>Gatunek</th>
+                <th>użytkownik który to dodał</th>
             </tr>
         </thead>
         <tbody>
@@ -210,6 +211,7 @@ li > a:only-child:after {
                 <td>{{ user._id }}</td>
                 <td>{{ user.name_book }}</td>
                 <td>{{ user.gerne }}</td>
+                <td>{{ user.user }}</td>
             </tr>
             {% else %}
             <tr>
